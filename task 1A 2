@@ -1,0 +1,36 @@
+import pandas as pd
+
+index = [
+    ['USA', 'USA', 'USA', 'Canada', 'Canada', 'Canada', 'Mexico', 'Mexico'],
+    ['New York', 'California', 'Texas', 'Ontario', 'Quebec', 'British Columbia', 'Mexico City', 'Yucatan']
+]
+
+hierarchical_index = pd.MultiIndex.from_arrays(index, names=('Country', 'State/Province'))
+
+
+data = [100, 200, 150, 300, 250, 400, 100, 200]
+series = pd.Series(data, index=hierarchical_index)
+print("Original Series with hierarchical index:")
+print(series)
+
+
+usa_data = series['USA']
+print("\nData for 'USA':")
+print(usa_data)
+
+canada_data = series['Canada']
+print("\nData for 'Canada':")
+print(canada_data)
+'
+california_data = series['USA', 'California']
+print("\nData for 'California' in 'USA':")
+print(california_data)
+
+
+ontario_data = series['Canada', 'Ontario']
+print("\nData for 'Ontario' in 'Canada':")
+print(ontario_data)
+
+mexico_data = series['Mexico']
+print("\nData for 'Mexico':")
+print(mexico_data)
