@@ -1,0 +1,37 @@
+import pandas as pd
+import numpy as np
+
+data = {
+    'A': [1, 2, np.nan, 4, 5],
+    'B': [5, np.nan, np.nan, 8, 10],
+    'C': [10, 11, 12, np.nan, 14],
+    'D': [np.nan, 3, 4, 5, np.nan]
+}
+df = pd.DataFrame(data)
+print("Original DataFrame:")
+print(df)
+
+print("\nMissing data identified (True indicates missing value):")
+print(df.isna())
+
+df_dropped = df.dropna()
+print("\nDataFrame after dropping rows with missing data:")
+print(df_dropped)
+
+df_filled = df.fillna(0)
+print("\nDataFrame after filling missing data with 0:")
+print(df_filled)
+
+df.loc[5] = [1, 5, 10, np.nan]  # Adding a duplicate row
+df.loc[6] = [2, np.nan, 11, 3]  # Adding another duplicate row
+
+print("\nDataFrame with some duplicate rows added:")
+print(df)
+
+print("\nDuplicate rows identified (True indicates duplicate row):")
+print(df.duplicated())
+
+# Remove duplicates
+df_no_duplicates = df.drop_duplicates()
+print("\nDataFrame after removing duplicate rows:")
+print(df_no_duplicates)
